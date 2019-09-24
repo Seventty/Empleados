@@ -27,13 +27,16 @@ namespace program{
 					Console.ReadKey();
 				break;
 				case "b":
-					Console.WriteLine("En desarrollo...");
-					//ver
+					Console.Clear();
+					Console.WriteLine("Inicializando...");
+					Thread.Sleep(1000);
+					VerUsuario();
 					Console.ReadKey();
 				break;
 				case "c":
 					Console.WriteLine("En desarrollo...");
 					//borrar
+					Menu();
 					Console.ReadKey();
 				break;
 				case "d":
@@ -77,7 +80,7 @@ namespace program{
 			ob.sueldo = double.Parse(Console.ReadLine());
 			Console.Clear();
 			Console.WriteLine("Datos introducidos correctamente. \nVolviendo al menu de inicio...");
-			Console.ReadKey();
+			Thread.Sleep(1000);
 			Console.Clear();
 			string pathCarpeta = @"C:\";
 			string nombreArchivo = @"Log.txt";
@@ -100,6 +103,11 @@ namespace program{
 				}catch(Exception E){
 					Console.WriteLine(E.Message);
 				}Menu();
-		}
+		}public static void VerUsuario(){
+			string log = System.IO.File.ReadAllText(@"C:\log.txt");
+			Console.WriteLine("Empelados actuales: "+log);
+			Console.WriteLine("\nPresiona cualquier tecla para salir...");
+			Menu();
 		}
 	}
+}
