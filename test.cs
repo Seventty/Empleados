@@ -1,5 +1,9 @@
 using System;
 using System.Threading;
+using System.Net;
+using System.IO;  
+using System.Runtime.Serialization.Formatters.Binary; 
+using System.Runtime.Serialization;
 namespace program{
 	public class primeraopcion{
 		public string nombre{get; set;}
@@ -75,7 +79,27 @@ namespace program{
 			Console.WriteLine("Datos introducidos correctamente. \nVolviendo al menu de inicio...");
 			Console.ReadKey();
 			Console.Clear();
-			Menu();
+			string pathCarpeta = @"C:\";
+			string nombreArchivo = @"Log.txt";
+			string rutaArchivo = Path.Combine(pathCarpeta, nombreArchivo);
+
+			try{if(!(Directory.Exists(pathCarpeta)))
+				{
+				Directory.CreateDirectory(pathCarpeta);
+			}
+			if(Directory.Exists(pathCarpeta)){
+
+				if(!File.Exists(rutaArchivo)){
+
+					using(var stream = File.Create(rutaArchivo));
+				}
+			}StreamWriter ficherotpm = new StreamWriter(rutaArchivo);
+			ficherotpm.WriteLine("Nombre: {"+ob.nombre+"} Apellido: {"+ob.apellido+"} Edad: {"+" Edad: "+ob.edad+"} Tiempo_Laborando: {"+ob.tiempo+"} fecha_nacimiento: {"+ob.fecha_nacimiento+"} Color_Favorito: {"+ob.color_fav+"} Sueldo: {"+ob.sueldo+"}");
+			ficherotpm.Close();
+
+				}catch(Exception E){
+					Console.WriteLine(E.Message);
+				}Menu();
+		}
 		}
 	}
-}
